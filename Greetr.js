@@ -34,7 +34,7 @@
           }
       },
       greeting : function() {
-          return greeting[this.language] + ' ' + this.fistname;
+          return greeting[this.language] + ' ' + this.firstname;
       },
        formalGreeting : function() {
           return formalGreetings[this.language] + ' ' + this.fullname();
@@ -59,7 +59,7 @@
       },
       log: function() {
           if(console){
-              console.log(logMessages[this.language] + ': '+ this.fullname();)
+              console.log(logMessages[this.language] + ': '+ this.fullname());
           }
           return this;
       },
