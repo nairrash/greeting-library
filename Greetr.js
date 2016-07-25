@@ -1,5 +1,6 @@
 
-(function(global,$) {
+;(function(global,$) {
+    //console.log($);
     //new an object
   var Greetr = function(firstname,lastname, language){
     return new Greetr.init(firstname,lastname,language);
@@ -7,16 +8,18 @@
   }
   
   //hidden within scope of iife
-  var supportedLangs = ['en' , 'es'];
+  var supportedLangs = ['en' , 'es','fr'];
 
   var greeting = {
       en : 'Hello',
-      es : 'Hola'
+      es : 'Hola',
+      fr : 'Bonjour'
   };
   
   var formalGreetings = {
       en: 'Greetings',
-      es: 'Saludas'
+      es: 'Saludas',
+      fr: 'Salut!'
       
   };
   
@@ -74,21 +77,24 @@
           return this;
       },
       
-      changeHtml : function(selector,value){
-          if($){
+      changeHtml : function(selector,formal){
+          if(!$){
               throw 'jQuery not loaded';
           }
           if(!selector){
               throw 'Missing selector';
           }
-          var msg;
-          if(formal) {
+          if(formal){
               msg = this.formalGreeting();
           }
-          else{
-              msg = this.greeting();
+          else {
+              msg =this.greeting();
           }
-          $(selector).html(msg);
+          if(console){
+              console.log(msg);
+          }
+          //console.log($(selector.html.val()));
+          $(selector).text(msg);
           return this;
       }
   };
@@ -98,6 +104,7 @@
       self.firstname = firstname || 'Default';
       self.lastname = lastname || 'Default';
       self.language = language || 'en';
+        self.validate();
   }
     
     Greetr.init.prototype = Greetr.prototype;
