@@ -1,10 +1,12 @@
 
 (function(global,$) {
+    //new an object
   var Greetr = function(firstname,lastname, language){
     return new Greetr.init(firstname,lastname,language);
 
   }
   
+  //hidden within scope of iife
   var supportedLangs = ['en' , 'es'];
 
   var greeting = {
@@ -69,6 +71,24 @@
               this.language = lang;
           }
           this.validate();
+          return this;
+      },
+      
+      changeHtml : function(selector,value){
+          if($){
+              throw 'jQuery not loaded';
+          }
+          if(!selector){
+              throw 'Missing selector';
+          }
+          var msg;
+          if(formal) {
+              msg = this.formalGreeting();
+          }
+          else{
+              msg = this.greeting();
+          }
+          $(selector).html(msg);
           return this;
       }
   };
